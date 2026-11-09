@@ -1,0 +1,282 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>يلا نلعب سوا — محقق الزوايا</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap" rel="stylesheet"><style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font-family:'Cairo',Tahoma,Arial,sans-serif;background:linear-gradient(160deg,#312e81,#6d28d9 55%,#db2777);background-attachment:fixed;min-height:100vh;color:#1e1b4b;font-size:16px}
+body::before{content:"";position:fixed;inset:0;background-image:var(--wm);pointer-events:none;z-index:150}
+button{font:inherit;cursor:pointer;border:0}#app{max-width:520px;margin:0 auto;padding:10px 10px 50px;position:relative;z-index:2}
+.fl{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:1}.fl span{position:absolute;font-size:28px;color:#fff;opacity:.22;animation:fl 11s linear infinite}
+@keyframes fl{from{transform:translateY(110vh) rotate(0)}to{transform:translateY(-20vh) rotate(360deg)}}
+.hdr{display:flex;gap:6px;align-items:center;color:#fff;margin-bottom:8px}.hdr .sp{flex:1;text-align:center;font-weight:800;font-size:14px;color:#fde68a}
+.pill,.hdr button{background:#ffffff2e;color:#fff;border-radius:12px;padding:5px 10px;font-weight:800;white-space:nowrap;font-size:15px}
+.hdr .pill.hint{background:#fde047;color:#713f12}.hdr .pill.hint.z{background:#ffffff2e;color:#fff}
+.card{background:#fff;border-radius:20px;padding:12px;margin:10px 0;box-shadow:0 6px 18px #0004;animation:in .5s ease}
+@keyframes in{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.center{text-align:center}h2{margin:4px 0}
+.big{display:block;width:100%;font-size:20px;font-weight:800;padding:13px;border-radius:16px;background:linear-gradient(#fbbf24,#f59e0b);color:#451a03;box-shadow:0 5px 0 #b45309;margin-top:12px}
+.big:active{transform:translateY(4px);box-shadow:0 1px 0 #b45309}.big.alt{background:#ede9fe;color:#4c1d95;box-shadow:0 5px 0 #c4b5fd;font-size:17px}
+.m{direction:ltr;display:inline-block;font-family:'Courier New',monospace;font-weight:700}
+svg .t{font-family:Arial,sans-serif;font-weight:700;font-size:14px}svg .lb{font-family:Arial,sans-serif;font-weight:700;font-size:16px}
+#fc svg{width:100%;height:auto;display:block}
+.bt{opacity:0;transition:opacity .7s}.bt.on{opacity:1}.dr{stroke-dasharray:1;stroke-dashoffset:1}.bt.on .dr{animation:draw 1s ease forwards}@keyframes draw{to{stroke-dashoffset:0}}
+.soft{filter:drop-shadow(0 0 2px #fde047)}.glow{animation:gl 1.6s ease-out}@keyframes gl{0%{filter:drop-shadow(0 0 0 #fde047)}35%{filter:drop-shadow(0 0 4px #f59e0b) drop-shadow(0 0 14px #facc15) drop-shadow(0 0 22px #fde047)}100%{filter:drop-shadow(0 0 2px #fde047)}}@keyframes pw{25%,65%{stroke-width:5.5px}}
+.shine svg,#fc.shine{animation:shn 1.2s ease 3}@keyframes shn{50%{filter:brightness(1.18) drop-shadow(0 0 12px #facc15)}}
+.nar{display:flex;gap:10px;align-items:flex-start}.av{font-size:46px;animation:bob 2s infinite}@keyframes bob{50%{transform:translateY(-6px)}}
+.bub{flex:1;background:#fef3c7;border-radius:6px 18px 18px 18px;padding:10px 12px;line-height:1.9;font-size:17px;min-height:70px;animation:in .4s}
+.dots{display:flex;gap:5px;justify-content:center;margin:10px 0 0}.dots i{width:22px;height:7px;border-radius:4px;background:#ddd6fe}.dots i.d{background:#7c3aed}
+.ill{display:block;margin:6px auto 0;width:170px;background:#fff;border:2px dashed #c4b5fd;border-radius:12px;padding:4px}
+.cap{text-align:center;font-size:12px;color:#6d28d9;font-weight:700}
+.q{font-size:19px;font-weight:800;text-align:center;line-height:1.8}.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.opt{background:#fff;border:3px solid #c4b5fd;border-radius:16px;padding:14px 4px;font-size:22px;font-weight:800;color:#4c1d95;box-shadow:0 4px 0 #c4b5fd;direction:ltr}
+.opt.ok{background:#bbf7d0;border-color:#16a34a;box-shadow:0 4px 0 #15803d}.opt.no{background:#fee2e2;border-color:#f87171;box-shadow:none}.opt:disabled{cursor:default}
+.res{margin-top:12px;border-radius:16px;padding:12px;text-align:center;line-height:1.8;font-weight:700;animation:in .5s}.res.g{background:#dcfce7}.res.s{background:#fef3c7}
+.pf h3{margin:0 0 6px;color:#6d28d9;text-align:center}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;border:3px solid #ddd6fe;background:#faf5ff;border-radius:14px;padding:8px;margin:8px 0;font-size:18px;font-weight:800;transition:.4s;min-height:58px}
+.row.lk{display:none}.row.done{background:#dcfce7;border-color:#22c55e}.row.cur{border-color:#8b5cf6;box-shadow:0 0 0 4px #8b5cf633;animation:in .5s}
+.row .tag{font-size:11px;background:#22c55e;color:#fff;border-radius:8px;padding:0 6px}
+.fx{font-weight:800}.slot,.tile{min-width:64px;height:46px;border-radius:12px;font-size:18px;font-weight:800;padding:0 12px}
+.slot{background:#fff;border:3px dashed #a78bfa;color:#4c1d95}.slot.on2{border-style:solid;background:#ede9fe}.slot.ok{border:3px solid #22c55e;background:#bbf7d0;color:#14532d;pointer-events:none}
+.slot.bad{border:3px solid #ef4444;background:#fee2e2;animation:sh .4s}@keyframes sh{25%{transform:translateX(7px)}75%{transform:translateX(-7px)}}
+.pool{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:10px;padding:10px;background:#ede9fe;border-radius:16px;min-height:64px}
+.tile{background:#fff;border:3px solid #7c3aed;color:#4c1d95;box-shadow:0 4px 0 #7c3aed;transition:.2s}.tile.sel{background:#fde68a;transform:translateY(-4px)}.tile.used{visibility:hidden}.tile.hint{animation:hp 1s infinite;background:#fef08a}
+@keyframes hp{50%{transform:scale(1.15);box-shadow:0 0 14px #facc15}}
+.pm{min-height:44px;text-align:center;font-weight:700;color:#6d28d9;margin:8px 0;line-height:1.7}
+.tools{display:flex;justify-content:center}.tools button{background:#fde047;color:#713f12;border-radius:14px;padding:8px 18px;font-weight:800;box-shadow:0 4px 0 #ca8a04}
+.ban{background:linear-gradient(135deg,#fde68a,#86efac);border-radius:16px;text-align:center;padding:12px;font-size:21px;font-weight:800;animation:pop .6s}@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
+.ov{position:fixed;inset:0;background:#0007;z-index:200;display:grid;place-items:center;padding:16px}.ov .card{max-width:420px}
+.cl{border:3px dashed #fde68a;border-radius:16px;padding:10px;color:#fde68a;text-align:center;margin-top:14px;font-weight:700}
+.stars{font-size:46px;letter-spacing:5px}.score{font-size:44px;font-weight:800;color:#7c3aed}.bm{position:fixed;z-index:210;pointer-events:none;font-size:22px;animation:bm 1.3s ease-out forwards}
+@keyframes bm{to{transform:translate(var(--dx),var(--dy)) rotate(360deg);opacity:0}}
+
+.stg{display:flex;align-items:center;gap:10px;width:100%;text-align:right;background:#fff;border-radius:18px;padding:12px;margin:12px 0;box-shadow:0 6px 0 #0003}
+.stg.lock{filter:grayscale(1);opacity:.6}.stg .ic{font-size:36px;min-width:54px;height:54px;border-radius:50%;background:#ede9fe;display:grid;place-items:center}.stg b{font-size:18px}.stg small{display:block;color:#64748b}.stg .go{margin-right:auto;font-size:24px}
+.cl.shim{animation:shm 2.4s infinite}@keyframes shm{50%{box-shadow:0 0 18px #fde68a;border-color:#fff}}.cl.open{background:#fef9c3;color:#713f12;border-style:solid;border-color:#f59e0b}
+.cert{border:6px double #f59e0b;background:#fffbeb}.tbl{display:flex;justify-content:center;gap:10px;margin:10px 0;flex-wrap:wrap}.tbl div{background:#ede9fe;border-radius:12px;padding:6px 14px}
+input.t{display:block;width:100%;font:inherit;font-size:19px;text-align:center;padding:11px;margin:8px 0;border-radius:14px;border:3px solid #ddd6fe}
+.qr{display:flex;justify-content:space-between;background:#f5f3ff;border-radius:10px;padding:5px 10px;margin:4px 0;font-weight:700}.row .gt{font-size:11px;background:#facc15;color:#713f12;border-radius:8px;padding:0 6px}
+
+/* الهيدر والرسم المثبّتان: --hh يُقاس بـ JS فيناسب أي شاشة */
+.hdr{position:sticky;top:0;z-index:60;background:#4c1d95;margin:-10px -10px 8px;padding:calc(8px + env(safe-area-inset-top,0px)) 10px 8px;border-radius:0 0 14px 14px}
+#fc{position:sticky;top:var(--hh,54px);z-index:50}
+#fc.mini{padding:4px 8px;margin:6px 0}#fc.mini svg{max-height:22vh;max-height:22dvh;margin:0 auto}
+.bt.act{opacity:1;filter:drop-shadow(0 0 3px #f59e0b) drop-shadow(0 0 10px #facc15)}.bt.act path,.bt.act line{stroke-width:4.5px}.bt.on.pul{opacity:1}.bt.pul{animation:gl 1.4s ease-out}.bt.pul path,.bt.pul line,.bt.pul circle{animation:pw 1.4s ease-out}.bt.pul .t,.bt.pul .lb{animation:none}
+button{touch-action:manipulation;-webkit-user-select:none;user-select:none}
+.pool{position:sticky;bottom:calc(6px + env(safe-area-inset-bottom,0px));z-index:40;box-shadow:0 -4px 14px #0003}
+@media(max-width:430px){#app{padding-left:6px;padding-right:6px}.card{padding:10px}.row{gap:6px;padding:6px;font-size:16px;min-height:52px}.slot,.tile{min-width:46px;height:42px;font-size:16px;padding:0 8px}.pool{gap:8px;padding:8px}#fc.mini svg{max-height:19dvh}.big{font-size:18px;padding:12px}.q{font-size:17px}.opt{font-size:19px}}
+</style></head><body><div class="fl" id="fl"></div>
+<div id="app"><div class="hdr" id="hd" style="display:none"><button onclick="back()">🗺️</button><span class="pill">🏆 <b id="sc">0</b>/20</span><span class="pill" title="سلسلة الإجابات الصحيحة — للتحفيز فقط ولا تؤثر في الدرجة">🔥 <b id="sk">0</b></span><span class="sp" id="lb"></span><span class="pill hint" id="hp">💡 <b id="hc">3</b></span><button onclick="mute()" id="mb">🔊</button></div>
+<div class="card" id="fc" style="display:none"></div><div id="pn"></div></div><div id="ov"></div><script>
+const D=Math.PI/180,f=n=>n.toFixed(1),BL='#2563eb',GR='#16a34a',OR='#ea580c';
+const P=(c,r,a)=>[c[0]+r*Math.cos(a*D),c[1]-r*Math.sin(a*D)];
+const DEFS='<defs><marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0L9,4.5L0,9z"/></marker></defs>';
+const ray=(a,b,ar=true)=>`<line x1="${f(a[0])}" y1="${f(a[1])}" x2="${f(b[0])}" y2="${f(b[1])}" stroke="#000" stroke-width="2.2" ${ar?'marker-end="url(#ar)"':''}/>`;
+const chev=(x,y,d)=>{const u=[Math.cos(d*D),-Math.sin(d*D)],n=[-u[1],u[0]],w=s=>[x-5*u[0]+s*5*n[0],y-5*u[1]+s*5*n[1]],a=w(1),b=w(-1);
+ return `<path d="M ${f(a[0])} ${f(a[1])} L ${f(x+3*u[0])} ${f(y+3*u[1])} L ${f(b[0])} ${f(b[1])}" fill="none" stroke="#b91c1c" stroke-width="2.2"/>`};
+const dot=p=>`<circle cx="${f(p[0])}" cy="${f(p[1])}" r="3.5"/>`;
+const txt=(p,s,c='#000',cl='t')=>`<text x="${f(p[0])}" y="${f(p[1])}" class="${cl}" fill="${c}" text-anchor="middle" dominant-baseline="central" direction="ltr">${s}</text>`;
+const L=(p,s)=>txt(p,s,'#000','lb');
+function ang(c,r,a1,a2,label,col,fill){
+ const p1=P(c,r,a1),p2=P(c,r,a2),q=`${f(p2[0])} ${f(p2[1])}`;
+ const d=fill?`M ${f(c[0])} ${f(c[1])} L ${f(p1[0])} ${f(p1[1])} A ${r} ${r} 0 0 0 ${q} Z`:`M ${f(p1[0])} ${f(p1[1])} A ${r} ${r} 0 0 0 ${q}`;
+ return `<path d="${d}" fill="${fill||'none'}" stroke="${col}" stroke-width="2"/>`+(label?txt(P(c,r+15,(a1+a2)/2),label,col):'')}
+function sq(c,s,a1,a2){const u=a=>[Math.cos(a*D),-Math.sin(a*D)],u1=u(a1),u2=u(a2);
+ return `<path d="M ${f(c[0]+s*u1[0])} ${f(c[1]+s*u1[1])} L ${f(c[0]+s*(u1[0]+u2[0]))} ${f(c[1]+s*(u1[1]+u2[1]))} L ${f(c[0]+s*u2[0])} ${f(c[1]+s*u2[1])}" fill="none" stroke="#dc2626" stroke-width="2"/>`}
+
+const G=[{n:'أ',q1:40,a:130,b:130,em:[50,120],z:{ty:'rt',t:40,bt:50}},
+ {n:'ب',q1:50,a:120,b:110,em:[45,100],z:{ty:'mid',t:30,bt:50}},
+ {n:'ج',q1:50,a:110,b:120,em:[60,110],z:{ty:'v',th:120}}];
+function wm(){const s=`<svg xmlns='http://www.w3.org/2000/svg' width='470' height='210'><text x='235' y='105' transform='rotate(-22 235 105)' text-anchor='middle' font-family='Tahoma,Arial' font-size='15' font-weight='bold' fill='#1e3a8a' fill-opacity='0.09'>الأستاذ عبد الرحمن محمود عبد المنصف حمودة</text></svg>`;
+ document.body.style.setProperty('--wm',`url("data:image/svg+xml,${encodeURIComponent(s)}")`)}
+
+wm();const $=s=>document.querySelector(s),shuf=a=>a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(x=>x[1]),fmt=n=>Number.isInteger(n)?n:+n.toFixed(2);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+$('#fl').innerHTML='∠ ∥ 📐 ⊥ 🔺 ° ⭐ 📏'.split(' ').map((c,i)=>`<span style="right:${i*13}%;animation-delay:-${i*1.4}s">${c}</span>`).join('');
+let AC,MUTE=false;const SN={tap:[[520,.05]],pop:[[800,.04],[1200,.06]],ok:[[660,.09],[990,.18]],soft:[[392,.16],[330,.24]],lock:[[900,.04],[1350,.1]],win:[[523,.1],[659,.1],[784,.1],[1047,.45]]};
+function snd(n){if(MUTE)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();let t=AC.currentTime;SN[n].forEach(([fr,d])=>{const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=fr;g.gain.setValueAtTime(.18,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+d);t+=d*.9})}catch(e){}}
+function mute(){MUTE=!MUTE;$('#mb').textContent=MUTE?'🔇':'🔊'}
+function boom(n=16,x=innerWidth/2,y=innerHeight*.55){for(let i=0;i<n;i++){const s=document.createElement('span');s.className='bm';s.textContent=['⭐','🎉','✨','🌟'][i%4];s.style.cssText=`left:${x}px;top:${y}px;--dx:${(Math.random()-.5)*340}px;--dy:${-80-Math.random()*240}px`;document.body.appendChild(s);setTimeout(()=>s.remove(),1400)}}
+const rain=()=>{for(let i=0;i<5;i++)setTimeout(()=>boom(12,innerWidth*(.15+.17*i)),i*180)};
+/* ===== الرسم: طبقات ===== */
+const dr=s=>s.replace(/<line /g,'<line pathLength="1" class="dr" '),DSH=(a,b)=>`<line x1="${f(a[0])}" y1="${f(a[1])}" x2="${f(b[0])}" y2="${f(b[1])}" stroke="${OR}" stroke-width="2.4" stroke-dasharray="6,4"/>`;
+function pZ(t){const A=[270,22],E=[270-105*Math.cos(t*D),22+105*Math.sin(t*D)];return{vb:'0 0 340 130',p:[['l1',dr(ray(A,[15,22],1))+dot([55,22])+dot(A)+L([55,38],'D')+L([284,16],'A')],['l2',dr(ray(E,[328,E[1]],1))+dot(E)+dot([300,E[1]])+L([E[0]-12,E[1]+10],'E')+L([300,E[1]+16],'C')],['mk',chev(140,22,180)+chev(E[0]+(328-E[0])*.4,E[1],0)],['tr',dr(ray(A,E,0))],['ga',ang(A,32,180,180+t,t+'°',BL)],['un',ang(E,30,0,t,'؟',GR)]]}}
+function pACD(a){const A=[150,20],C=[A[0]+95*Math.cos(a*D),A[1]+95*Math.sin(a*D)];return{vb:'0 0 340 125',p:[['l1',dr(ray(A,[300,20],1))+dot(A)+dot([275,20])+L([A[0]-10,18],'A')+L([275,8],'B')],['l2',dr(ray(C,[300,C[1]],1))+dot(C)+dot([275,C[1]])+L([C[0]-12,C[1]+4],'C')+L([275,C[1]+14],'D')],['mk',chev(215,20,0)+chev(C[0]+(300-C[0])*.5,C[1],0)],['tr',dr(ray(A,C,0))],['ga',ang(A,28,-a,0,a+'°',BL)],['un',ang(C,28,0,180-a,'؟',GR)]]}}
+function pX(b){const ph=180-b,E=[100,135],B=[E[0]+105*Math.cos(ph*D),E[1]-105*Math.sin(ph*D)],C=[E[0],B[1]+14],F=[B[0]+95,B[1]];return{vb:'0 0 340 155',p:[
+['l1',dr(ray(C,[15,C[1]],1))+dot([45,C[1]])+L([45,C[1]-14],'D')+L([C[0]+8,C[1]-12],'C')],['l2',dr(ray(C,E,0))+sq(C,12,180,270)+dr(ray(E,[320,E[1]],1))+dot(E)+L([E[0]-12,E[1]+12],'E')+L([300,E[1]+14],'A')],
+['l3',dr(ray(E,B,0))+dr(ray(B,[325,B[1]],1))+dot(B)+dot(F)+L([B[0]-6,B[1]-14],'B')+L([F[0],F[1]-14],'F')],['mk',chev(75,C[1],180)+chev(200,E[1],0)+chev(B[0]+45,B[1],0)],
+['ga',ang(B,26,-b,0,b+'°',BL)],['un',ang(E,34,ph,90,'x°',GR)],['h1',ang(E,20,0,ph,ph+'°',OR)]]}}
+function pEM(a,g){const A=[90,22],yE=75,yC=132,gp=180-g,L1=(yE-22)/Math.sin(a*D),E=[A[0]+L1*Math.cos(a*D),yE],L2=(yC-yE)/Math.sin(gp*D),C=[E[0]-L2*Math.cos(gp*D),yC];return{vb:'0 0 340 150',p:[
+['l1',dr(ray(A,[310,22],1))+dot(A)+dot([270,22])+L([A[0]-4,8],'A')+L([270,8],'B')],['l2',dr(ray(E,[15,yE],1))+dot([50,yE])+L([50,yE-14],'M')],['l3',dr(ray(C,[15,yC],1))+dot([50,yC])+L([50,yC+14],'F')],
+['mk',chev(200,22,0)+chev(32,yE,180)+chev(32,yC,180)],['t1',dr(ray(A,E,0))+dot(E)+L([E[0]+14,yE],'E')],['t2',dr(ray(E,C,0))+dot(C)+L([C[0]+8,yC+15],'C')],
+['ga',ang(A,30,-a,0,a+'°',BL)],['gg',ang(C,26,gp,180,g+'°','#555','#d4d4d8')],['un',ang(E,42,180-a,180+gp,'؟',GR)],['h1',ang(E,22,180-a,180,a+'°',OR)],['h2',ang(E,22,180,180+gp,gp+'°',OR)]]}}
+function pZig(t,b,rt){const P0=[55,25],M0=[P0[0]+60*Math.cos(t*D),P0[1]+60*Math.sin(t*D)],L2=(105-60*Math.sin(t*D))/Math.sin(b*D),Q=[M0[0]-L2*Math.cos(b*D),M0[1]+L2*Math.sin(b*D)];return{vb:'0 0 340 155',p:[
+['l1',dr(ray(P0,[325,25],1))+dot(P0)+dot([240,25])],['l2',dr(ray(Q,[325,Q[1]],1))+dot(Q)+dot([240,Q[1]])],['mk',chev(150,25,0)+chev(150,Q[1],0)],['s1',dr(ray(P0,M0,0))+dot(M0)],['s2',dr(ray(M0,Q,0))],
+['gb',ang(Q,34,0,b,b+'°','#555','#d4d4d8')],rt?['un',ang(P0,34,-t,0,'x°',GR)]:['ga',ang(P0,34,-t,0,t+'°',BL)],rt?['rr',sq(M0,13,180-t,180+b)]:['un',ang(M0,32,180-t,180+b,'x°',GR)],
+['aux',DSH([M0[0]-75,M0[1]],[M0[0]+60,M0[1]])],['h1',ang(M0,19,180-t,180,(rt?'x':t)+'°',OR)],['h2',ang(M0,19,180,180+b,b+'°',OR)]]}}
+function pV(th){const bs=180-th,Ap=[170,135],Lv=[Ap[0]-100*Math.cos(bs*D),Ap[1]-100*Math.sin(bs*D)],Rv=[Ap[0]+100*Math.cos(bs*D),Lv[1]];return{vb:'0 0 340 155',p:[
+['l1',dr(ray(Lv,[15,Lv[1]],1))+dot(Lv)],['l2',dr(ray(Rv,[325,Rv[1]],1))+dot(Rv)],['s1',dr(ray(Lv,Ap,0))+dot(Ap)],['s2',dr(ray(Rv,Ap,0))],['ga',ang(Lv,26,180,180+th,th+'°',BL)+ang(Rv,26,-th,0,th+'°',BL)],
+['un',ang(Ap,32,bs,180-bs,'x°',GR)],['aux',DSH(Lv,Rv)],['h1',ang(Lv,17,-bs,0,bs+'°',OR)+ang(Rv,17,180,180+bs,bs+'°',OR)]]}}
+const svgOf=F=>`<svg viewBox="${F.vb}">${DEFS}${F.p.map(([i,s])=>`<g class="bt" id="${i}">${s}</g>`).join('')}</svg>`;
+const ILL=`<svg class="ill" viewBox="0 0 150 46"><line x1="8" y1="12" x2="142" y2="12" stroke="#000" stroke-width="2.5"/><line x1="8" y1="34" x2="142" y2="34" stroke="#000" stroke-width="2.5"/>${chev(75,12,0)}${chev(75,34,0)}</svg><div class="cap">سهمان متماثلان = مستقيمان متوازيان ∥</div>`;
+/* ===== بيانات الأسئلة ===== */
+/* كل سؤال: rows = خطوات البرهان | nm + lab = خريطة صغيرة تربط القطع بأجزاء الرسم (حسب المعنى لا حسب الصحة) */
+const s_=(t,k)=>({s:t,k}),f_=t=>({f:t}),mm=t=>`<span class="m">${t}</span>`;
+
+function newRows(g,i){const [ea,eg]=g.em,z=g.z,a=g.a,b=g.b,ph=180-b,gp=180-eg,t0=g.q1,K=(t,k)=>({s:t,k}),X=(d,c,x,gg,h,reg,hx)=>({d,c,x,g:gg,h,reg,hx}),rel=['ga','un'],nm={},lab={};nm['∥']=nm['⊥']=['mk'];let rows,gr=[1,1,1,1];
+ ['متبادلتان','متداخلتان','متناظرتان'].forEach(w=>nm[w]=rel);
+ if(i==0){gr=[0,0,0,0];nm['AE']=['tr'];nm['AD']=['l1'];nm['EC']=['l2'];nm['∠A']=nm['m(∠A)']=['ga'];nm['∠AEC']=nm['m(∠AEC)']=['un'];lab[t0]=['ga'];
+  rows=[X('rtl',[K('AD','l'),s_('∥'),K('EC','l'),f_('والقاطع'),s_('AE')],['⊥','DE','AC'],['l1','l2','mk','tr'],'القاطع هو الخط الذي يقطع المتوازيين.',['l1','l2','mk','tr']),X('rtl',[K('∠A','p'),f_('و'),K('∠AEC','p'),s_('متبادلتان')],['متداخلتان','∠C'],rel,'الزاويتان داخل المتوازيين وعلى جهتين مختلفتين من القاطع، فهما <b>متبادلتان</b>.',['tr','ga','un']),
+   X('ltr',[K('m(∠AEC)','e'),f_('='),K('m(∠A)','e')],['m(∠C)','180° − m(∠A)'],rel,'المتبادلتان <b>متساويتان</b>.',rel),
+   X('ltr',[K('m(∠AEC)','e'),f_('='),K(t0+'°','e')],[(180-t0)+'°',(t0+10)+'°'],['un'],'عوّض بقياس الزاوية المعطاة.',['un'])]}
+ else if(i==1){nm['AC']=['tr'];nm['AB']=['l1'];nm['CD']=['l2'];nm['∠A']=['ga'];nm['∠ACD']=nm['m(∠ACD)']=['un'];lab[a]=['ga'];
+  rows=[X('rtl',[K('AB','l'),s_('∥'),K('CD','l'),f_('والقاطع'),s_('AC')],['⊥','AD','BC'],['l1','l2','mk','tr'],'القاطع هو الخط الذي يقطع المتوازيين.',['l1','l2','mk','tr']),X('rtl',[K('∠A','p'),f_('و'),K('∠ACD','p'),s_('متداخلتان'),f_('مجموعهما'),s_('180°')],['متبادلتان','متناظرتان','90°'],rel,'داخل المتوازيين وفي <b>جهة واحدة</b> من القاطع: متداخلتان.',['tr','ga','un']),
+   X('ltr',[K('m(∠ACD)','e'),f_('='),K(`180° − ${a}°`,'e')],[`180° + ${a}°`,a+'°'],['ga'],'اطرح المعطى من 180°.',rel),
+   X('ltr',[K('m(∠ACD)','e'),f_('='),K((180-a)+'°','e')],[a+'°',(190-a)+'°'],['un'],'أكمل عملية الطرح.',['un'])]}
+ else if(i==2){['متبادلتان','متداخلتان','متناظرتان'].forEach(w=>nm[w]=['ga','l3']);nm['BE']=['l3'];nm['CE']=['l2'];nm['DC']=['l1'];nm['EA']=['l2'];nm['BF']=['l3'];nm['∠B']=['ga'];nm['m(∠CEA)']=['l2'];nm['x']=['un'];nm['∠BEA']=nm['m(∠BEA)']=['l3'];lab[b]=['ga'];lab[90]=['l2'];lab[ph]=['h1'];
+  rows=[X('rtl',[K('EA','l'),s_('∥'),K('BF','l'),f_('والقاطع'),s_('BE'),f_('⇒'),K('∠B','p'),f_('و'),K('∠BEA','p'),s_('متداخلتان'),f_('مجموعهما'),s_('180°')],['⊥','AB','متبادلتان','متناظرتان','∠BEF'],['l3','mk','ga'],'القاطع هو الخط الذي يقطع المتوازيين EA و BF.',['l1','l2','l3','mk']),X('ltr',[K('m(∠BEA)','e'),f_('='),K(`180° − ${b}°`,'e'),f_('='),K(ph+'°','e')],[`180° + ${b}°`,b+'°',(ph+10)+'°'],['h1'],'المتداخلتان مجموعهما 180°.',['ga','l3','l2']),
+   X('ltr',[K('CE','p'),s_('⊥'),K('DC','p'),f_('⇒'),K('m(∠CEA)','e'),f_('='),K('90°','e')],['180°','m(∠BEA)'],['l2'],'CE عمودي على DC وهما يوازيان EA، إذن ∠CEA قائمة.',['l2']),
+   X('ltr',[K('x','e'),f_('='),K(`90° − ${ph}°`,'e'),f_('='),s_((b-90)+'°')],[`90° + ${ph}°`,`180° − ${ph}°`,ph+'°'],['un'],'x هي الجزء الباقي من الزاوية القائمة بعد ∠BEA.',['un','l2'])]}
+ else if(i==3){nm['(تبادل)']=nm['(تداخل)']=['ga','t1'];nm['AE']=['t1'];nm['AB']=['l1'];nm['EM']=['l2'];nm['m(∠AEM)']=['t1','l2'];nm['m(∠MEC)']=['l2','t2'];nm['m(∠AEC)']=['un'];lab[ea]=['ga','h1'];lab[eg]=['gg'];lab[gp]=['h2'];
+  rows=[X('ltr',[K('AB','l'),s_('∥'),K('EM','l'),f_('والقاطع'),s_('AE'),f_('⇒'),s_('m(∠AEM)'),f_('='),s_(ea+'°'),s_('(تبادل)')],['⊥','EC','m(∠MEC)','(تداخل)',(ea+10)+'°'],['l1','l2','mk','t1','ga'],'القاطع هو الخط الذي يقطع المتوازيين AB و EM.',['l1','l2','mk','t1','t2']),X('ltr',[K('m(∠MEC)','e'),f_('='),K(`180° − ${eg}°`,'e'),f_('='),K(gp+'°','e')],[eg+'°',`180° + ${eg}°`,(gp+10)+'°'],['gg','h2'],'EM ∥ CF والقاطع EC: متداخلتان مجموعهما 180°.',['gg','t2','l3','l2']),
+   X('ltr',[s_('m(∠AEC)'),f_('='),K('m(∠AEM)','a'),f_('+'),K('m(∠MEC)','a')],['m(∠A)','m(∠C)'],['t1','t2','h1'],'الزاوية الكبيرة = مجموع جزأيها.',['t1','t2','l2','un']),
+   X('ltr',[f_('m(∠AEC) ='),K(ea+'°','a'),f_('+'),K(gp+'°','a'),f_('='),s_((ea+gp)+'°')],[(ea+gp+10)+'°',eg+'°'],['un'],'اجمع القياسين.',['un'])]}
+ else if(z.ty=='v'){const th=z.th,bs=180-th,r=2*th-180;lab[th]=['ga'];lab[bs]=['h1'];
+  rows=[X('rtl',[f_('زاوية القاعدة ='),K(`180° − ${th}°`,'e'),f_('='),K(bs+'°','e'),f_('(عند كل طرف)')],[`180° + ${th}°`,th+'°'],['ga','h1'],'المتجاورتان على خط مستقيم مجموعهما 180°.',['ga','l1','l2']),X('rtl',[f_('الخط المتقطع قاعدة مثلث رأسه x ، ومجموع زواياه ='),s_('180°')],['90°','360°'],['aux'],'مجموع زوايا أي مثلث 180°.',['s1','s2','l1','l2'],['aux']),
+   X('ltr',[K(`x + ${bs}° + ${bs}°`,'e'),f_('='),K('180°','e')],[`x − ${bs}° − ${bs}°`,'360°'],['un'],'كوّن معادلة من زوايا المثلث.',['un','ga']),
+   X('ltr',[f_('⇒'),K('x','e'),f_('='),K(`180° − ${bs}° − ${bs}°`,'e'),f_('='),s_(r+'°')],[`180° + ${bs}° + ${bs}°`,th+'°','90°'],['un'],'اطرح زاويتي القاعدة من 180°.',['un'])]}
+ else{const rt=z.ty=='rt',t=z.t,bt=z.bt,r=rt?90-bt:t+bt;['يوازي','يعامد','يقطع'].forEach(w=>nm[w]=['aux']);lab[bt]=['gb','h2'];if(rt)lab[90]=['rr'];else lab[t]=['ga','h1'];
+  rows=[X('rtl',[f_('نرسم من الرأس مستقيماً مساعداً'),s_('يوازي'),f_('الشعاعين')],['يعامد','يقطع'],['l1','l2','mk','aux'],'الخط المتقطع المساعد يوازي الشعاعين فتصير الزوايا متبادلة.',['l1','l2','mk','s1','s2'],['aux']),X('rtl',rt?[f_('العليا ='),s_('x'),f_('، السفلى ='),s_(bt+'°'),f_('(تبادل)')]:[f_('العليا ='),s_(t+'°'),f_('، السفلى ='),s_(bt+'°'),f_('(تبادل)')],rt?[(90-bt)+'°','90°']:[(180-t)+'°','90°'],['h1','h2'],'كل زاوية عند الرأس تساوي نظيرتها بالتبادل.',rt?['gb','un','s1','s2']:['ga','gb','s1','s2'],['aux']),
+   rt?X('ltr',[f_('الزاوية قائمة ⇒'),K(`x + ${bt}°`,'e'),f_('='),K('90°','e')],[`x − ${bt}°`,'180°'],['rr'],'الزاوية عند الرأس قائمة = 90°.',['rr','un','gb'])
+     :X('ltr',[s_('x'),f_('='),K(t+'°','a'),f_('+'),K(bt+'°','a')],[(bt-t)+'°',(180-t)+'°'],['ga','gb'],'x هي مجموع الزاويتين.',['ga','gb','un']),
+   rt?X('ltr',[f_('⇒'),K('x','e'),f_('='),K(r+'°','e')],[bt+'°',(r+10)+'°'],['un'],'انقل الحد المعلوم للطرف الآخر.',['un'])
+     :X('ltr',[f_('⇒ x ='),s_(r+'°')],[(180-r)+'°',(r+10)+'°'],['un'],'اجمع القياسين.',['un'])]}
+ return{rows:explode(rows),gr,nm,lab}}
+/* تجزئة أدق: العمليات (= + −) وأجزاء كل تعبير تصير قطعاً مستقلة؛ أجزاء الحدّ الواحد تُقارَن معاً (tid) */
+function explode(rows){let tid=0;const sp=t=>t.split(/ ([−+]) /);return rows.map(r=>{const c=[],ops=new Set();
+ r.c.forEach(x=>{
+  if(x.f!=null){const m=x.f.match(/^(.*?)\s*([=+])$/);if(m&&!/[=+]/.test(m[1])){if(m[1])c.push(f_(m[1]));ops.add(m[2]);c.push({s:m[2]})}else c.push(x);return}
+  const p=sp(x.s);if(p.length==1){c.push(x);return}
+  const t=++tid;p.forEach((q,j)=>{if(j%2)ops.add(q);c.push(x.k?{s:q,k:x.k,t}:{s:q})})});
+ const ex=new Set(c.filter(z=>z.s!=null).map(z=>z.s));
+ const x=[...new Set([...r.x.flatMap(sp),...[...ops].map(o=>o=='='?'≠':o=='+'?'−':'+')])].filter(z=>!ex.has(z));
+ return{...r,c,x}})}
+const QC={};const QD=(m,i)=>QC[m+'_'+i]||(QC[m+'_'+i]=mkq(G[m],i));
+function mkq(g,i){const [ea,eg]=g.em,z=g.z,a=g.a,b=g.b,t0=g.q1,bl=v=>`<b style="color:#2563eb">${v}</b>`,gr=`<b style="color:#16a34a">الخضراء</b>`;
+ let F,st,ans,mc=0;
+ if(i==0){F=pZ(t0);mc={ans:t0,opts:[40,50,60,70]};ans=t0+'°';
+  st=[['أهلاً أيها المحقق! 🕵️ قضية جديدة. نبدأ بالمستقيم '+mm('AD')+' …',['l1']],['ثم يأتي المستقيم '+mm('EC')+' أسفله …',['l2']],['انتبه للسهمين الصغيرين على المستقيمين: هذه علامة <b>التوازي</b>، أي '+mm('AD ∥ EC')+' (لا يلتقيان أبداً).',['mk'],1],['نرسم الآن <b>القاطع</b> '+mm('AE')+' الذي يقطع المتوازيين …',['tr']],[`ظهرت زاويتان. الأولى عند A قياسها ${bl(t0+'°')} (زرقاء) …`,['ga']],[`والثانية عند E زاوية ${gr} …`,['un']],['السؤال: ما قياس الزاوية الخضراء '+mm('∠AEC')+' ؟ 🤔',['un']]]}
+ else if(i==1){F=pACD(a);ans=(180-a)+'°';
+  st=[['نبدأ بالمستقيم '+mm('AB')+' …',['l1']],['ثم المستقيم '+mm('CD')+' أسفله …',['l2']],['السهمان الصغيران: '+mm('AB ∥ CD'),['mk'],1],['والقاطع '+mm('AC')+' يقطعهما …',['tr']],[`عند A زاوية ${bl(a+'°')} …`,['ga']],[`وعند C زاوية ${gr} …`,['un']],['المطلوب: أوجد '+mm('m(∠ACD)')+' 🔍',['un']]]}
+ else if(i==2){F=pX(b);ans=(b-90)+'°';
+  st=[['نبدأ بالمستقيم '+mm('DC')+' …',['l1']],['ننزل منه '+mm('CE')+' بزاوية <b>قائمة 90°</b> 🟥 ثم نمدّ المستقيم '+mm('EA')+' …',['l2']],['ومن E يخرج الضلع '+mm('EB')+' ويمتد منه المستقيم '+mm('BF')+' …',['l3']],['علامات التوازي: '+mm('DC ∥ EA ∥ BF'),['mk'],1],[`عند B زاوية ${bl(b+'°')} …`,['ga']],[`وعند E زاوية ${gr} اسمها <b>x</b> …`,['un']],['المطلوب: أوجد قيمة <b>x</b> 🔍',['un']]]}
+ else if(i==3){F=pEM(ea,eg);ans=(ea+180-eg)+'°';
+  st=[['نبدأ بالمستقيم '+mm('AB')+' …',['l1']],['ثم المستقيم '+mm('EM')+' …',['l2']],['ثم المستقيم '+mm('CF')+' …',['l3']],['علامات التوازي: '+mm('AB ∥ EM ∥ CF'),['mk'],1],['وتظهر قاطعتان: '+mm('AE')+' ثم '+mm('EC')+' …',['t1','t2']],[`زاوية A = ${bl(ea+'°')} …`,['ga']],[`وزاوية C = ${bl(eg+'°')} …`,['gg']],[`والزاوية ${gr} عند E …`,['un']],['المطلوب: أوجد '+mm('m(∠AEC)')+' 🔍',['un']]]}
+ else if(z.ty=='v'){const th=z.th,r=2*th-180;F=pV(th);ans=r+'°';
+  st=[['الشعاع الأيسر … '+mm('◀'),['l1']],['والشعاع الأيمن على <b>استقامة واحدة</b> معه …',['l2']],['ومن طرفيهما تخرج قطعتان تلتقيان عند القمة …',['s1','s2']],[`الزاويتان عند الطرفين ${bl(th+'°')} …`,['ga']],[`والزاوية ${gr} <b>x</b> عند القمة …`,['un']],['المطلوب: أوجد قيمة <b>x</b> ⛰️',['un']]]}
+ else{const rt=z.ty=='rt',t=z.t,bt=z.bt,r=rt?90-bt:t+bt;F=pZig(t,bt,rt);ans=r+'°';
+  st=[['الشعاع العلوي …',['l1']],['والشعاع السفلي …',['l2']],['السهمان الصغيران: الشعاعان <b>متوازيان</b>',['mk'],1],['تخرج قطعتان تلتقيان عند الرأس …',['s1','s2']],...(rt?[[`الزاوية عند الرأس <b>قائمة</b> 🟥 …`,['rr']],[`والسفلية ${bl(bt+'°')} …`,['gb']],[`والخضراء <b>x</b> عند الأعلى …`,['un']]]:[[`الزاوية ${bl(t+'°')} …`,['ga']],[`والزاوية ${bl(bt+'°')} …`,['gb']],[`والخضراء <b>x</b> عند الرأس …`,['un']]]),['المطلوب: أوجد قيمة <b>x</b> ⚡',['un']]]}
+ const NR=newRows(g,i);return{F,st,ans,mc,rows:NR.rows,gr:NR.gr,tm:NR.nm,lab:NR.lab}}
+/* ===== الحالة ===== */
+let U={name:'',cls:'',best:[[],[],[]],cp:null},RUN,S,streak=0,sel=null,selSlot=null;
+const sv=()=>{try{localStorage.setItem('geoDet',JSON.stringify(U))}catch(e){}},ld=()=>{try{const v=JSON.parse(localStorage.getItem('geoDet'));if(v&&v.best){U=v;const c=U.cp;if(c&&!(c.v==3&&G[c.m]&&Array.isArray(c.qs)&&c.qs[c.k]!=null&&c.qs.every(q=>q>=0&&q<5)))U.cp=null}}catch(e){}};
+const MODN=['أ','ب','ج'],bs_=(m,q)=>U.best[m][q]||0,msc=m=>[0,1,2,3,4].reduce((a,q)=>a+bs_(m,q),0),dn=m=>[0,1,2,3,4].every(q=>U.best[m][q]!=null),pass=m=>dn(m)&&msc(m)>=16,unl=m=>m==0||pass(m-1),allp=()=>[0,1,2].every(pass),stars=s=>s>=18?3:s>=16?2:s>=12?1:0;
+const pn=h=>{$('#pn').innerHTML=h},hh=()=>document.documentElement.style.setProperty('--hh',$('#hd').offsetHeight+'px'),hd=v=>{$('#hd').style.display=v?'flex':'none';$('#fc').style.display=v?'block':'none';hh()};
+addEventListener('resize',hh);try{new ResizeObserver(hh).observe($('#hd'))}catch(e){}
+function glow(ids,q){ids.forEach(i=>{const e=document.getElementById(i);if(!e)return;e.classList.add('on');if(q){e.classList.add('soft');return}e.classList.remove('glow');void e.getBoundingClientRect();e.classList.add('glow','soft')})}
+/* ===== نقطة الحفظ داخل السؤال ===== */
+function cp(){if(!RUN||!S||S.ph=='end')return;const sl=S.ph=='proof'?[...document.querySelectorAll('#r'+S.cur+' .slot')].map(s=>s.dataset.txt||''):[];
+ U.cp={v:3,m:S.m,qs:RUN.qs,k:RUN.k,ph:S.ph,bi:S.bi,cur:S.cur,live:S.live,spent:S.spent,hints:S.hints,used:S.used,sh:S.sh,pts:S.pts,pc:S.pc,sl,st:streak};sv()}
+function resume(){const c=U.cp;if(!c)return;const q=c.qs[c.k],d=QD(c.m,q);RUN={m:c.m,qs:c.qs,k:c.k};streak=c.st||0;
+ S={m:c.m,q,d,hints:c.hints,used:c.used,spent:c.spent,live:c.live,cur:Math.min(c.cur,d.rows.length-1),fails:0,sh:c.sh,bi:Math.min(c.bi,d.st.length-1),pts:c.pts||{},pc:c.pc||{},ph:c.ph,sl:c.sl};startUI();
+ if(c.ph=='nar'){narUI();for(let k=0;k<S.bi;k++)glow(d.st[k][1],1);showB();return}
+ d.st.forEach(s=>glow(s[1],1));
+ if(c.ph=='mcq')return mcq();
+ if(c.ph=='paper'){d.rows.forEach(r=>glow(r.g,1));const u=$('#un text');if(u)u.textContent=d.ans;return paper()}
+ proof(1)}
+/* ===== شاشات ===== */
+function intro(){ld();hd(0);pn(`<div class="card center" style="margin-top:30px"><div style="font-size:66px" class="av">🕵️</div><h2 style="font-size:30px">يلا نلعب سوا!</h2><p style="line-height:1.9">أنت الآن <b>محقق الزوايا</b>. كل سؤال قضية… وكل برهان تبنيه بنفسك 🔍</p>
+ <input class="t" id="nm" placeholder="اسمك (اختياري)" maxlength="16" value="${esc(U.name)}"><input class="t" id="cl" placeholder="فصلك (اختياري)" maxlength="10" value="${esc(U.cls)}"><button class="big" onclick="go0()">ابدأ المغامرة 🔍</button><small style="color:#64748b">الاسم يظهر على شهادتك فقط</small></div>`)}
+function go0(){U.name=$('#nm').value.trim();U.cls=$('#cl').value.trim();sv();snd('win');map()}
+function map(){hd(0);const n=[0,1,2].filter(pass).length,c=U.cp;snd('pop');
+ pn(`<div style="text-align:center;color:#fff;font-size:44px">🦉</div><div class="lbl" style="color:#fde68a;font-weight:800;text-align:center;margin-bottom:4px">${U.name?'أهلاً '+esc(U.name)+'! ':''}اجمع 16 من 20 في كل نموذج لتفتح التالي</div>
+ ${c?`<button class="big" onclick="resume()">▶ تابع من حيث توقفت — نموذج (${MODN[c.m]}) س${c.qs[c.k]+1}</button>`:''}
+ ${[0,1,2].map(m=>{const u=unl(m),p=pass(m);return `<button class="stg ${u?'':'lock'}" ${u?`onclick="open_(${m})"`:''}><div class="ic">${u?['🏝️','🏔️','🏰'][m]:'🔒'}</div><div><b>النموذج (${MODN[m]})</b><small>${dn(m)?`${fmt(msc(m))} / 20 ${'⭐'.repeat(stars(msc(m)))}`:'لم يُلعب بعد'}</small></div><span class="go">${u?(p?'✅':'▶'):''}</span></button>`}).join('')}
+ <div class="cl shim ${allp()?'open':''}" ${allp()?'onclick="cert()" style="cursor:pointer"':''}>${allp()?'🏆📜 شهادتك جاهزة! اضغط لفتحها':'🔒📜 الشهادة مقفلة — أكمل النماذج الثلاثة لتحصل عليها'}<br><b>${n} من 3</b></div>`)}
+function open_(m){const miss=[0,1,2,3,4].filter(q=>bs_(m,q)<4);if(!dn(m)||!miss.length)return run(m,[0,1,2,3,4]);
+ $('#ov').innerHTML=`<div class="ov"><div class="card center"><h2>النموذج (${MODN[m]})</h2><p>${fmt(msc(m))} / 20</p><button class="big" onclick="run(${m},[${miss}])">🎯 أعد الأسئلة الناقصة فقط</button><button class="big alt" onclick="run(${m},[0,1,2,3,4])">🔁 أعد النموذج كاملاً</button><button class="big alt" onclick="$('#ov').innerHTML=''">إغلاق</button></div></div>`}
+function run(m,qs){$('#ov').innerHTML='';RUN={m,qs,k:0};question()}
+function back(){cp();map()}
+function upd(){const m=S.m,q=S.q;let s=0;for(let k=0;k<5;k++)s+=k==q?Math.max(bs_(m,k),Math.max(0,S.live-S.spent)):bs_(m,k);$('#sc').textContent=fmt(s);$('#sk').textContent=streak;$('#hc').textContent=S.hints;$('#hp').classList.toggle('z',S.hints==0);$('#lb').textContent=`نموذج (${MODN[m]}) • س${q+1}/5`}
+function startUI(){hd(1);$('#fc').classList.remove('shine','mini');$('#fc').innerHTML=svgOf(S.d.F);upd()}
+function narUI(){pn(`<div class="card"><div class="nar"><div class="av">🕵️</div><div class="bub" id="bub"></div></div><div class="dots" id="dts">${S.d.st.map(()=>'<i></i>').join('')}</div><button class="big" id="nb" onclick="beat()">التالي ◀</button></div>`)}
+function question(){const q=RUN.qs[RUN.k],m=RUN.m,d=QD(m,q);S={m,q,d,hints:3,used:0,spent:0,live:0,cur:0,fails:0,sh:0,bi:-1,pts:{},pc:{},ph:'nar'};startUI();narUI();beat()}
+function showB(){const d=S.d,[t,ids,il]=d.st[S.bi],b=$('#bub');b.innerHTML=t+(il?ILL:'');b.style.animation='none';void b.offsetWidth;b.style.animation='';
+ document.querySelectorAll('#dts i').forEach((x,k)=>x.classList.toggle('d',k<=S.bi));glow(ids);if(S.bi==d.st.length-1)$('#nb').textContent=d.mc?'جاهز للإجابة ✍️':'ابنِ البرهان 🧩'}
+function beat(){const d=S.d;if(S.bi==d.st.length-1)return d.mc?mcq():proof();S.bi++;showB();snd('pop');cp()}
+function mcq(){S.ph='mcq';cp();const L4=['أ','ب','جـ','د'],mc=S.d.mc;pn(`<div class="card"><div class="q">ما قياس الزاوية الخضراء ${mm('m(∠AEC)')} ؟</div><div class="opts">${mc.opts.map((v,k)=>`<button class="opt" data-v="${v}" onclick="pickO(this)">${L4[k]}) ${v}°</button>`).join('')}</div><div id="rs"></div></div>`)}
+function pickO(b){const ok=+b.dataset.v==S.d.mc.ans;document.querySelectorAll('.opt').forEach(o=>{o.disabled=true;if(+o.dataset.v==S.d.mc.ans)o.classList.add('ok')});
+ if(ok){S.live+=4;streak++;snd('ok');boom(14);$('#rs').innerHTML='<div class="res g">🎉 ممتاز! إجابة صحيحة <b>+4</b><br>لكن… من أين جئت بها؟ <b>أرني الدليل!</b></div>'}
+ else{b.classList.add('no');streak=0;snd('soft');$('#rs').innerHTML='<div class="res s">لا بأس — المحقق الحقيقي يتعلم من كل قضية 🌱<br>الإجابة الصحيحة هي <b>'+document.querySelector('.opt.ok').textContent+'</b>.<br>تعال نبني الدليل معاً ونفهم السبب.</div>'}
+ upd();S.ph='proof';cp();$('#rs').insertAdjacentHTML('beforeend','<button class="big" onclick="proof()">ابنِ البرهان 🧩</button>')}
+/* ===== بناء البرهان ===== */
+const PEN=0.25;/* الخصم عن كل محاولة خاطئة، وأقصاه نقطة واحدة للخطوة */
+const dirOf=t=>/[\u0600-\u06FF]/.test(t)?'rtl':'ltr';
+const fxH=t=>`<span class="fx" dir="auto">${t}</span>`;
+const rowH=(r,i)=>{const dn_=i<S.cur,pt=S.pts[i];return `<div class="row ${dn_?'done':i==S.cur?'cur':'lk'}" id="r${i}" style="direction:${r.d}">${dn_&&pt?`<span class="gt">+${fmt(pt)}</span>`:''}${r.c.map(c=>c.s==null?fxH(c.f):dn_?`<button class="slot ok" style="direction:${dirOf(c.s)}">${c.s}</button>`:`<button class="slot" onclick="slotTap(this)"></button>`).join('')}</div>`};
+function proof(rs){S.ph='proof';pn(`<div class="card pf"><h3>🧩 ابنِ البرهان بنفسك</h3><div id="rows">${S.d.rows.map(rowH).join('')}</div><div class="pm" id="pm">ابدأ بالقطعة المضيئة ✨ ثم اضغط قطعة وبعدها الخانة الفارغة 👆</div><div class="pool" id="pool"></div><div class="tools"><button onclick="hintBtn()">💡 تلميح</button></div></div>`);$('#fc').classList.add('mini');
+ if(rs)for(let i=0;i<S.cur;i++)glow(S.d.rows[i].g,1);
+ fill(S.cur);begin();
+ if(rs){const sl=[...$('#r'+S.cur).querySelectorAll('.slot')];(S.sl||[]).forEach((t,j)=>{if(!sl[j])return;const tl=t&&[...document.querySelectorAll('.tile:not(.used)')].find(x=>x.dataset.t==t);if(tl){tl.classList.add('used');sl[j].dataset.txt=t;sl[j].textContent=t;sl[j].style.direction=dirOf(t)}});if(sl.length&&sl.every(s=>s.dataset.txt))chk()}else cp()}
+/* بداية كل خطوة: تضيء القطعة الصحيحة الأولى في الصندوق فقط كإشارة للبدء (الرسم لا يتغيّر) */
+function begin(){const f0=exOf(S.d.rows[S.cur])[0],t=[...document.querySelectorAll('.tile')].find(x=>x.dataset.t==f0);if(t)t.classList.add('hint')}
+const exOf=r=>r.c.filter(c=>c.s!=null).map(c=>c.s);
+function fill(i){const r=S.d.rows[i];$('#pool').innerHTML=shuf(exOf(r)).map(t=>`<button class="tile" data-t="${t}" style="direction:${dirOf(t)}" onclick="tileTap(this)">${t}</button>`).join('');sel=selSlot=null}
+const tileOf=t=>[...document.querySelectorAll('.tile.used')].find(x=>x.dataset.t==t);
+/* ربط القطعة بالرسم حسب المعنى (لا حسب الصحة): اسم معروف في الرسم، أو قياس مكتوب عليه، أو x */
+const lay=t=>{const d=S.d,s=new Set(d.tm[t]||[]);(t.match(/\d+(?=°)/g)||[]).forEach(n=>(d.lab[n]||[]).forEach(v=>s.add(v)));if(/(^|[^A-Za-z])x([^A-Za-z]|$)/.test(t))s.add('un');return[...s]};
+function tileTap(t){if(t.classList.contains('used'))return;snd('tap');document.querySelectorAll('.tile.hint').forEach(x=>x.classList.remove('hint'));pulse(lay(t.dataset.t));if(selSlot)return place(t,selSlot);document.querySelectorAll('.tile.sel').forEach(x=>x.classList.remove('sel'));sel=t;t.classList.add('sel')}
+function slotTap(s){if(s.classList.contains('ok'))return;snd('tap');if(s.dataset.txt){ret(s);return}if(sel)return place(sel,s);document.querySelectorAll('.slot.on2').forEach(x=>x.classList.remove('on2'));selSlot=s;s.classList.add('on2')}
+function place(t,s){const ra=t.getBoundingClientRect(),rb=s.getBoundingClientRect(),c=document.createElement('div'),txt=t.dataset.t;c.className='tile';c.textContent=txt;c.style.cssText=`position:fixed;left:${ra.left}px;top:${ra.top}px;width:${ra.width}px;z-index:300;margin:0;direction:${dirOf(txt)}`;document.body.appendChild(c);
+ t.classList.add('used');t.classList.remove('sel');sel=selSlot=null;s.classList.remove('on2');s.dataset.txt=txt;
+ c.animate([{transform:'none'},{transform:`translate(${rb.left+rb.width/2-ra.left-ra.width/2}px,${rb.top+rb.height/2-ra.top-ra.height/2}px)`}],{duration:300,easing:'ease-out'}).onfinish=()=>{c.remove();s.textContent=txt;s.style.direction=dirOf(txt);snd('pop');pulse(lay(txt));cp();chk()}}
+function ret(s){const t=tileOf(s.dataset.txt);t&&t.classList.remove('used');delete s.dataset.txt;s.textContent='';s.classList.remove('on2','bad');cp()}
+/* الإنارة الدائمة: الجزء المقابل للقطعة المضغوطة يظهر ويبقى مضيئاً حتى تضغط قطعة أخرى لها جزء في الرسم */
+function pulse(ids){const ok=ids.filter(i=>document.getElementById(i));if(!ok.length)return;document.querySelectorAll('#fc .bt.act').forEach(e=>e.classList.remove('act'));ok.forEach(i=>{const e=document.getElementById(i);e.classList.add('on','act')})}
+/* مقارنة لا تعتمد على الترتيب: مفتاح قانوني لكل حدّ، ثم نفرز مفاتيح المجموعة (k) ونقارنها */
+const canon=t=>{t=String(t).replace(/\s+/g,'');const m=t.match(/^(m\()?∠(\w)(\w)(\w)\)?$/);if(m)return(m[1]||'')+'∠'+m[3]+[m[2],m[4]].sort().join('');if(/^[A-Z]{2}$/.test(t))return t.split('').sort().join('');if(!/[−\-]/.test(t)&&t.includes('+'))return t.split('+').sort().join('+');return t};
+function judge(r,sl){const cs=r.c.filter(c=>c.s!=null),res=sl.map(()=>false),G2={},kk=(ix,fn)=>ix.map(i=>canon(fn(i))).join('\u0001');cs.forEach((c,i)=>{const k=c.k||('#'+i);(G2[k]=G2[k]||[]).push(i)});
+ for(const k in G2){const T={};G2[k].forEach(i=>{const t=cs[i].t||('#'+i);(T[t]=T[t]||[]).push(i)});const terms=Object.values(T),rem=terms.map(ix=>kk(ix,i=>cs[i].s)).sort(),got=terms.map(ix=>kk(ix,i=>sl[i].dataset.txt));
+  if(rem.join('|')==got.slice().sort().join('|')){G2[k].forEach(i=>res[i]=true);continue}
+  terms.forEach((ix,n)=>{const j=rem.indexOf(got[n]);if(j>=0){rem.splice(j,1);ix.forEach(i=>res[i]=true)}else ix.forEach(i=>{if(canon(sl[i].dataset.txt)==canon(cs[i].s))res[i]=true})})}
+ return res}
+function chk(){if(S.ck===S.cur)return;const r=S.d.rows[S.cur],sl=[...$('#r'+S.cur).querySelectorAll('.slot')];if(sl.some(s=>!s.dataset.txt||s.classList.contains('bad')))return;
+ const ok=judge(r,sl);let bad=0;sl.forEach((s,k)=>{if(ok[k])s.classList.add('ok');else{bad++;s.classList.add('bad');setTimeout(()=>ret(s),650)}});
+ if(bad){S.fails++;streak=0;snd('soft');const pn_=S.d.mc?0:Math.min(PEN,1-(S.pc[S.cur]||0));if(pn_>0){S.spent+=pn_;S.pc[S.cur]=(S.pc[S.cur]||0)+pn_}upd();$('#pm').innerHTML='ليس تماماً 🤔 (الصحيح بقي في مكانه)'+(pn_>0?`<br><b style="color:#dc2626">خُصم ${fmt(pn_)} من درجتك ⚠️</b>`:'')+`<br>🧠 <b>تذكّر دائماً:</b> ${r.h}`;if(S.fails>=3){S.fails=0;setTimeout(()=>giveHint(1),1000)}return}
+ S.ck=S.cur;S.fails=0;streak++;const g=S.d.gr[S.cur],e=g*(S.sh?.5:1);S.live+=e;S.sh=0;S.pts[S.cur]=e;snd('lock');boom(8);const rw=$('#r'+S.cur);rw.classList.remove('cur');rw.classList.add('done');if(g)rw.insertAdjacentHTML('afterbegin',`<span class="gt">+${fmt(e)}</span>`);glow(r.g);upd();
+ if(S.cur<S.d.rows.length-1){S.cur++;cp();setTimeout(()=>{const n=$('#r'+S.cur);n.classList.remove('lk');n.classList.add('cur');fill(S.cur);begin();$('#pm').textContent='أحسنت! الخطوة التالية 👇'},800)}else setTimeout(finish,700)}
+function giveHint(auto){const r=S.d.rows[S.cur],ex=exOf(r),t=[...document.querySelectorAll('.tile:not(.used)')].find(x=>ex.includes(x.dataset.t));if(!auto){S.hints--;S.sh=1}S.used++;
+ if(t){t.classList.add('hint');setTimeout(()=>t.classList.remove('hint'),3500);const ids=lay(t.dataset.t);pulse(ids.length?ids:(r.reg||[]))}
+ if(r.hx){glow(r.hx);pulse(r.hx)}
+ $('#pm').innerHTML=(auto?'🎁 تلميح مجاني: ':'💡 ')+r.h;upd();cp()}
+function hintBtn(){if(S.hints>0){giveHint(0);return}
+ $('#ov').innerHTML=`<div class="ov"><div class="card center"><div style="font-size:44px">💡</div><h2>تريد مساعدة أكثر؟</h2><p>بدّل <b>نقطة واحدة</b> بثلاثة تلميحات إضافية.<br>المساعدة لها ثمن صغير… والتعلّم يستحق!</p><button class="big" onclick="deal(1)">نعم، أبدّل نقطة</button><button class="big alt" onclick="deal(0)">لا، سأحاول بنفسي</button></div></div>`}
+function deal(y){$('#ov').innerHTML='';if(y){S.spent++;S.hints=3;upd();$('#pm').textContent='تم! حصلت على 3 تلميحات 💡';cp()}}
+function finish(){snd('win');boom(26);$('#fc').classList.add('shine');const u=$('#un text');if(u)u.textContent=S.d.ans;S.ph='paper';cp();
+ $('#pm').outerHTML='';$('#pool').outerHTML=`<div class="ban">🎉 اكتمل البرهان!</div><button class="big" onclick="paper()">التحدّي الأخير ✍️</button>`;document.querySelector('.tools').remove()}
+function paper(){$('#fc').classList.remove('shine','mini');pn(`<div class="card center"><div style="font-size:60px">✍️</div><h2>التحدّي الأخير</h2><p style="line-height:1.9;font-size:18px">الآن اكتب هذا البرهان على <b>ورقة حقيقية</b>.<br>لا تنظر! هل أنت جاهز؟</p><button class="big" onclick="endQ()">كتبته — أنا جاهز ✅</button><button class="big alt" onclick="again()">أرني مرة أخرى 👀</button></div>`)}
+function again(){pn(`<div class="card pf"><h3>البرهان كاملاً (للقراءة فقط)</h3>${S.d.rows.map(r=>`<div class="row done" style="direction:${r.d}">${r.c.map(c=>fxH(c.s!=null?c.s:c.f)).join(' ')}</div>`).join('')}<button class="big" onclick="endQ()">كتبته — أنا جاهز ✅</button></div>`)}
+function endQ(){const m=S.m,q=S.q,fin=Math.max(0,S.live-S.spent),old=U.best[m][q];U.best[m][q]=old==null?fin:Math.max(old,fin);S.ph='end';U.cp=null;sv();upd();snd(fin==4?'win':'ok');if(fin==4)boom(24);const last=RUN.k==RUN.qs.length-1;$('#fc').style.display='none';
+ pn(`<div class="card center"><div style="font-size:50px">${fin==4?'🏅':'👏'}</div><h2>درجة هذا السؤال</h2><div class="score">${fmt(fin)} / 4</div>${old!=null&&old>fin?`<p>تُحتسب أفضل درجة لك: <b>${fmt(old)}</b></p>`:''}<button class="big" onclick="${last?'stageRes()':'RUN.k++;question()'}">${last?'🏁 نتيجة النموذج':'السؤال التالي ▶'}</button></div>`)}
+function stageRes(){const m=RUN.m,s=msc(m),ok=pass(m),n=stars(s),miss=[0,1,2,3,4].filter(q=>bs_(m,q)<4);hd(0);ok?(snd('win'),rain()):snd('soft');
+ const msg=ok?(s==20?'درجة كاملة! أنت بطل حقيقي 👑':'ممتاز! فتحت الخطوة التالية 🎉'):`قريب جداً! 💪 تحتاج <b>${fmt(16-s)}</b> درجات لتفتح التالي. كل محاولة تجعلك أقوى — الجهد يُحتسب دائماً.`;
+ pn(`<div class="card center"><div style="font-size:50px">${ok?'🎉':'💪'}</div><h2>نتيجة النموذج (${MODN[m]})</h2><div class="stars">${'⭐'.repeat(n)}${'☆'.repeat(3-n)}</div><div class="score">${fmt(s)} / 20</div>
+ ${[0,1,2,3,4].map(q=>`<div class="qr"><span>س${q+1}</span><span>${bs_(m,q)==4?'✅':'⚠️'} ${fmt(bs_(m,q))} / 4</span></div>`).join('')}<p style="line-height:1.8;font-weight:700">${msg}</p>
+ ${ok?(allp()?'<button class="big" onclick="cert()">🏆 افتح شهادتك</button>':m<2?`<button class="big" onclick="open_(${m+1})">النموذج التالي ▶</button>`:''):''}
+ ${miss.length?`<button class="big ${ok?'alt':''}" onclick="run(${m},[${miss}])">🎯 أعد الأسئلة الخاطئة فقط</button><button class="big alt" onclick="run(${m},[0,1,2,3,4])">🔁 أعد النموذج كاملاً</button>`:''}
+ <button class="big alt" onclick="map()">🗺️ الخريطة</button></div>`)}
+function cert(){hd(0);snd('win');rain();const t=[0,1,2].reduce((a,m)=>a+msc(m),0),miss=[0,1,2].find(m=>[0,1,2,3,4].some(q=>bs_(m,q)<4));
+ pn(`<div class="card center cert"><div style="font-size:54px">🏆</div><h2>شهادة تفوّق</h2><p style="line-height:1.9">يشهد الأستاذ بأن البطل<br><b style="font-size:26px;color:#7c3aed">${esc(U.name)||'البطل المجهول'}</b><br>${U.cls?'فصل '+esc(U.cls):''}<br>أنهى جميع قضايا المتوازيات والقاطع</p>
+ <div class="tbl">${[0,1,2].map(m=>`<div>نموذج ${MODN[m]}<br><b>${fmt(msc(m))}</b>/20</div>`).join('')}</div><div class="score">${fmt(t)} / 60</div>
+ <h2>${t>=54?'👑 بطل الهندسة':t>=48?'🌟 نجم الهندسة':'🕵️ محقق المتوازيات'}</h2><p style="color:#92400e;font-weight:700">الأستاذ عبد الرحمن محمود عبد المنصف حمودة</p>
+ ${miss!=null?`<button class="big" onclick="open_(${miss})">🎯 أعد الأسئلة الخاطئة</button>`:''}<button class="big alt" onclick="map()">🗺️ الخريطة</button></div>`)}
+intro();
+</script></body></html>
